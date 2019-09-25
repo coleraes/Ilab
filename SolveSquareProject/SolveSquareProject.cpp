@@ -1,0 +1,296 @@
+//-----------------------------------------------
+//! \file
+//! \version 1.1
+//! \author  Valentin Timoshkin, DREC
+//! \brief   Solving square equation
+//! \todo    Upgrade input function
+//-----------------------------------------------
+#include <stdio.h>
+#include <math.h>
+#include <assert.h>
+
+const double eps = 1e-10;
+const int MAXTRIES = 3;
+
+
+int DoubleComp (double a, double b);
+int SolveLinear (double a, double b, double* x1);
+int SolveSquare (double a, double b, double c, double* x1, double* x2);
+double Discrim (double a, double b, double c);
+void input(double* a, double* b, double* c);
+
+
+int main()
+{
+    printf ("SolveSquare Project v1.1\n");        //Intro
+    printf ("(c) Valentin Timoshkin, DREC\n");
+    double a = NAN, b = NAN, c = NAN;
+    input(&a, &b, &c);               //Input
+    double x1 = 0, x2 = 0;
+    int nRoots = SolveSquare(a, b, c, &x1, &x2);  //Using SolveSquare function
+    switch (nRoots)
+    {
+    case -1:                             //Case with infinite number of roots
+        printf("Infinite number of roots\n");
+        break;
+    case  0:                              //Case with no roots
+        printf("No roots\n");
+        break;
+    case  1:                              //Case with 1 root
+        printf("There is 1 solution: x = %lg", x1);
+        break;
+    case  2:                              //Case with 2 roots
+        printf("There are 2 solutions: x1 = %lg and x2 = %lg", x1, x2);
+        break;
+    default:
+        printf("ERROR");
+        return 1;
+    }
+    return 0;
+}
+
+//-----------------------------------------------
+//! Compare 2 double type numbers
+//!
+//! \param [in]  a  1st number
+//! \param [in]  b  2nd number
+//!
+//! \return  1 if a > b
+//!          0 if a = b
+//!         -1 if a < b
+//!
+//! \note This function needs the constant eps
+//!            which sets accuracy
+//-----------------------------------------------
+
+  int DoubleComp (double a, double b)               // Double Comparer
+{
+    assert (isfinite(a));
+    assert (isfinite(b));
+    if (fabs(a - b) <= eps)                        //a == b
+    {
+        return 0;
+    }
+    if ((a - b) > eps)                            //a > b
+    {
+        return 1;
+    }
+    else                                          //a < b
+        return -1;
+}
+
+//-----------------------------------------------
+//! Solves a linear equation ax + b = 0
+//!
+//! \param [in]  a  a-coefficient
+//! \param [in]  b  b-coefficient
+//! \param [out] x1 Pointer to the 1st root
+//!
+//! \return Number of roots
+//!
+//! \note In case of infinite numbers of roots,
+//!       returns -1.
+//-----------------------------------------------
+
+int SolveLinear (double a, double b, double* x1)  //Solving Linear Equation
+{
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(x1 != NULL);
+    if (DoubleComp (a, 0) == 0)
+    {
+        if (DoubleComp (b, 0) == 0)               //Case with infinite number of roots
+        {
+            x1 = NULL;
+            return -1;
+        }
+        else
+        {
+            x1 = NULL;                                    //Case with no root
+            return  0;
+        }
+    }
+    else                                          //Case with 1 root
+    {
+        *x1 = -(b / a);
+        return 1;
+    }
+}
+
+//-------------------------------------------------------------------
+//! Calculates a discriminant of square equation ax2 + bx + c = 0
+//!
+//! \param [in]  a  a-coefficient
+//! \param [in]  b  b-coefficient
+//! \param [in]  c  c-coefficient
+//!
+//! \return D - discriminant
+//-------------------------------------------------------------------
+
+double Discrim (double a, double b, double c)     //Discriminant calculation
+{
+        assert(isfinite(a));
+        assert(isfinite(b));
+        assert(isfinite(c));
+        double D = NAN;
+        D = b * b - 4 * a * c;
+        return D;
+}
+
+//-----------------------------------------------
+//! Solves a square equation ax2 + bx + c = 0
+//!
+//! \param [in]  a  a-coefficient
+//! \param [in]  b  b-coefficient
+//! \param [in]  c  c-coefficient
+//! \param [out] x1 Pointer to the 1st root
+//! \param [out] x2 Pointer to the 2nd root
+//!
+//! \return Number of roots
+//!
+//! \note In case of infinite numbers of roots,
+//!       returns -1.
+//-----------------------------------------------
+
+int SolveSquare (double a, double b, double c, double* x1, double* x2)
+{
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(isfinite(c));
+    assert(x1 != NULL);
+    assert(x2 != NULL);
+    if (DoubleComp (a, 0) == 0)                   // Case with linear equation (a == 0)
+    {
+        int nRoots = SolveLinear (b, c, x1);
+        x2 = NULL;
+        return nRoots;
+    }
+    else
+    {
+        if (DoubleComp (c, 0) == 0)
+        {
+            if (DoubleComp (b, 0) == 0)           // a != 0, b == 0, c == 0
+            {
+                *x1 = 0;
+                x2 = NULL;
+                return 1;
+            }
+            else                                  // a != 0, b != 0, c == 0
+            {
+                *x1 = 0;
+                int nRoots = SolveLinear (a, b, x2);
+                return (nRoots + 1);
+            }
+        }
+        else
+        {
+            if (DoubleComp (b, 0) == 0)           // a != 0, b == 0, c != 0
+            {
+                if (DoubleComp ((c / a), 0) == 1)
+                {
+                    x1 = NULL;
+                    x2 = NULL;
+                    return 0;
+                }
+                else
+                {
+                    *x1 = sqrt((-c) / a);
+                    *x2 = -sqrt((-c) / a);
+                    return 2;
+                }
+            }
+            else                                  // a !=0, b != 0, c != 0
+            {
+                double D = Discrim (a, b, c);
+                if (DoubleComp (D, 0) == -1)
+                {
+                    x1 = NULL;
+                    x2 = NULL;
+                    return 0;
+                }
+                if (DoubleComp (D, 0) == 0)
+                {
+                    *x1 = (-b) / (2 * a);
+                     x2 = NULL;
+                    return 1;
+                }
+                else
+                {
+                    double SqrtD = sqrt (D);
+                    *x1 = (-b + SqrtD) / (2 * a);
+                    *x2 = (-b - SqrtD) / (2 * a);
+                    return 2;
+                }
+            }
+        }
+    }
+}
+
+//-----------------------------------------------
+//! Inputing 3 double numbers with validation
+//!
+//! \param [out] a Pointer to the 1st number
+//! \param [out] b Pointer to the 2nd number
+//! \param [out] c Pointer to the 3rd number
+//!
+//! \note This function needs constant MAXTRIES
+//!       which sets number of invalid attempts
+//-----------------------------------------------
+
+void input(double* a, double* b, double* c)   //Input
+{
+    assert(a != NULL);
+    assert(b != NULL);
+    assert(c != NULL);
+
+    assert(a != b);
+    assert(a != c);
+    assert(b != c);
+
+    printf ("Input the coefficients of equation\n");
+    for (int i = 0; i < MAXTRIES; i++)              //Inputing a
+    {
+        printf("a = ");
+        scanf("%lg", a);
+        if (isfinite(*a) != 0)
+        {
+            break;
+        }
+        else
+        {
+            printf("Invalid input. Try again\n");
+            fflush(stdin);
+        }
+    }
+    assert(isfinite (*a));
+    for (int i = 0; i < MAXTRIES; i++)              //Inputing b
+    {
+        printf("b = ");
+        scanf("%lg", b);
+        if (isfinite(*b) != 0)
+        {
+            break;
+        }
+        else
+        {
+            printf("Invalid input. Try again\n");
+            fflush(stdin);
+        }
+    }
+    assert(isfinite(*b));
+    for (int i = 0; i < MAXTRIES; i++)              //Inputing c
+    {
+        printf("c = ");
+        scanf("%lg", c);
+        if (isfinite(*c) != 0)
+        {
+            break;
+        }
+        else
+        {
+            printf("Invalid input. Try again\n");
+            fflush(stdin);
+        }
+    }
+    assert(isfinite(*c));
+}

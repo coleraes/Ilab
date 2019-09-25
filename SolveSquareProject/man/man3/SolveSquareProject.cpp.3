@@ -1,0 +1,182 @@
+.TH "SolveSquareProject.cpp" 3 "Wed Sep 25 2019" "SolveSquare" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SolveSquareProject.cpp \- Solving square equation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBDoubleComp\fP (double a, double b)"
+.br
+.ti -1c
+.RI "int \fBSolveLinear\fP (double a, double b, double *x1)"
+.br
+.ti -1c
+.RI "int \fBSolveSquare\fP (double a, double b, double c, double *x1, double *x2)"
+.br
+.ti -1c
+.RI "double \fBDiscrim\fP (double a, double b, double c)"
+.br
+.ti -1c
+.RI "void \fBinput\fP (double *a, double *b, double *c)"
+.br
+.ti -1c
+.RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const double \fBeps\fP = 1e\-10"
+.br
+.ti -1c
+.RI "const int \fBMAXTRIES\fP = 3"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Solving square equation\&. 
+
+
+.PP
+\fBVersion\fP
+.RS 4
+1\&.1 
+.RE
+.PP
+\fBAuthor\fP
+.RS 4
+Valentin Timoshkin, DREC 
+.RE
+.PP
+\fBTodo\fP
+.RS 4
+Upgrade input function 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "double Discrim (double a, double b, double c)"
+Calculates a discriminant of square equation ax2 + bx + c = 0
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP a-coefficient 
+.br
+\fIb\fP b-coefficient 
+.br
+\fIc\fP c-coefficient
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+D - discriminant 
+.RE
+.PP
+
+.SS "int DoubleComp (double a, double b)"
+Compare 2 double type numbers
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP 1st number 
+.br
+\fIb\fP 2nd number
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if a > b 0 if a = b -1 if a < b
+.RE
+.PP
+\fBNote\fP
+.RS 4
+This function needs the constant eps which sets accuracy 
+.RE
+.PP
+
+.SS "void input (double * a, double * b, double * c)"
+Inputing 3 double numbers with validation
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP Pointer to the 1st number 
+.br
+\fIb\fP Pointer to the 2nd number 
+.br
+\fIc\fP Pointer to the 3rd number
+.RE
+.PP
+\fBNote\fP
+.RS 4
+This function needs constant MAXTRIES which sets number of invalid attempts 
+.RE
+.PP
+
+.SS "int SolveLinear (double a, double b, double * x1)"
+Solves a linear equation ax + b = 0
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP a-coefficient 
+.br
+\fIb\fP b-coefficient 
+.br
+\fIx1\fP Pointer to the 1st root
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of roots
+.RE
+.PP
+\fBNote\fP
+.RS 4
+In case of infinite numbers of roots, returns -1\&. 
+.RE
+.PP
+
+.SS "int SolveSquare (double a, double b, double c, double * x1, double * x2)"
+Solves a square equation ax2 + bx + c = 0
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP a-coefficient 
+.br
+\fIb\fP b-coefficient 
+.br
+\fIc\fP c-coefficient 
+.br
+\fIx1\fP Pointer to the 1st root 
+.br
+\fIx2\fP Pointer to the 2nd root
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of roots
+.RE
+.PP
+\fBNote\fP
+.RS 4
+In case of infinite numbers of roots, returns -1\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SolveSquare from the source code\&.

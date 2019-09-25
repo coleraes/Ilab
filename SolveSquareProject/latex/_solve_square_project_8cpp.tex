@@ -1,0 +1,162 @@
+\hypertarget{_solve_square_project_8cpp}{}\doxysection{Solve\+Square\+Project.\+cpp File Reference}
+\label{_solve_square_project_8cpp}\index{SolveSquareProject.cpp@{SolveSquareProject.cpp}}
+
+
+Solving square equation.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_solve_square_project_8cpp_a75bb24534b2efe2aa0f96ea9abc88b9d}{Double\+Comp}} (double a, double b)
+\item 
+int \mbox{\hyperlink{_solve_square_project_8cpp_af1251424668de931b7abb16ee9b12802}{Solve\+Linear}} (double a, double b, double $\ast$x1)
+\item 
+int \mbox{\hyperlink{_solve_square_project_8cpp_ab2dd9b24e0e487efdd1cd1f40dd3a023}{Solve\+Square}} (double a, double b, double c, double $\ast$x1, double $\ast$x2)
+\item 
+double \mbox{\hyperlink{_solve_square_project_8cpp_aec540665549aa2a2208f06990c4a91fb}{Discrim}} (double a, double b, double c)
+\item 
+void \mbox{\hyperlink{_solve_square_project_8cpp_a34e8a7d6e2ff8f34a5d2e86b3865cba2}{input}} (double $\ast$a, double $\ast$b, double $\ast$c)
+\item 
+\mbox{\Hypertarget{_solve_square_project_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{_solve_square_project_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+int {\bfseries main} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_solve_square_project_8cpp_a3d8c24629d725b9ef8c238cf27c9b158}\label{_solve_square_project_8cpp_a3d8c24629d725b9ef8c238cf27c9b158}} 
+const double {\bfseries eps} = 1e-\/10
+\item 
+\mbox{\Hypertarget{_solve_square_project_8cpp_a58732d68137f37824a99677c89169763}\label{_solve_square_project_8cpp_a58732d68137f37824a99677c89169763}} 
+const int {\bfseries M\+A\+X\+T\+R\+I\+ES} = 3
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Solving square equation. 
+
+\begin{DoxyVersion}{Version}
+1.\+1 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Valentin Timoshkin, D\+R\+EC 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Upgrade input function \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_solve_square_project_8cpp_aec540665549aa2a2208f06990c4a91fb}\label{_solve_square_project_8cpp_aec540665549aa2a2208f06990c4a91fb}} 
+\index{SolveSquareProject.cpp@{SolveSquareProject.cpp}!Discrim@{Discrim}}
+\index{Discrim@{Discrim}!SolveSquareProject.cpp@{SolveSquareProject.cpp}}
+\doxysubsubsection{\texorpdfstring{Discrim()}{Discrim()}}
+{\footnotesize\ttfamily double Discrim (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c }\end{DoxyParamCaption})}
+
+Calculates a discriminant of square equation ax2 + bx + c = 0
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & a-\/coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & b-\/coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & c-\/coefficient\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+D -\/ discriminant 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_solve_square_project_8cpp_a75bb24534b2efe2aa0f96ea9abc88b9d}\label{_solve_square_project_8cpp_a75bb24534b2efe2aa0f96ea9abc88b9d}} 
+\index{SolveSquareProject.cpp@{SolveSquareProject.cpp}!DoubleComp@{DoubleComp}}
+\index{DoubleComp@{DoubleComp}!SolveSquareProject.cpp@{SolveSquareProject.cpp}}
+\doxysubsubsection{\texorpdfstring{DoubleComp()}{DoubleComp()}}
+{\footnotesize\ttfamily int Double\+Comp (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b }\end{DoxyParamCaption})}
+
+Compare 2 double type numbers
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & 1st number \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & 2nd number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a $>$ b 0 if a = b -\/1 if a $<$ b
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function needs the constant eps which sets accuracy 
+\end{DoxyNote}
+\mbox{\Hypertarget{_solve_square_project_8cpp_a34e8a7d6e2ff8f34a5d2e86b3865cba2}\label{_solve_square_project_8cpp_a34e8a7d6e2ff8f34a5d2e86b3865cba2}} 
+\index{SolveSquareProject.cpp@{SolveSquareProject.cpp}!input@{input}}
+\index{input@{input}!SolveSquareProject.cpp@{SolveSquareProject.cpp}}
+\doxysubsubsection{\texorpdfstring{input()}{input()}}
+{\footnotesize\ttfamily void input (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+
+Inputing 3 double numbers with validation
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em a} & Pointer to the 1st number \\
+\hline
+\mbox{\texttt{ out}}  & {\em b} & Pointer to the 2nd number \\
+\hline
+\mbox{\texttt{ out}}  & {\em c} & Pointer to the 3rd number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function needs constant M\+A\+X\+T\+R\+I\+ES which sets number of invalid attempts 
+\end{DoxyNote}
+\mbox{\Hypertarget{_solve_square_project_8cpp_af1251424668de931b7abb16ee9b12802}\label{_solve_square_project_8cpp_af1251424668de931b7abb16ee9b12802}} 
+\index{SolveSquareProject.cpp@{SolveSquareProject.cpp}!SolveLinear@{SolveLinear}}
+\index{SolveLinear@{SolveLinear}!SolveSquareProject.cpp@{SolveSquareProject.cpp}}
+\doxysubsubsection{\texorpdfstring{SolveLinear()}{SolveLinear()}}
+{\footnotesize\ttfamily int Solve\+Linear (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double $\ast$}]{x1 }\end{DoxyParamCaption})}
+
+Solves a linear equation ax + b = 0
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & a-\/coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & b-\/coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em x1} & Pointer to the 1st root\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of roots
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+In case of infinite numbers of roots, returns -\/1. 
+\end{DoxyNote}
+\mbox{\Hypertarget{_solve_square_project_8cpp_ab2dd9b24e0e487efdd1cd1f40dd3a023}\label{_solve_square_project_8cpp_ab2dd9b24e0e487efdd1cd1f40dd3a023}} 
+\index{SolveSquareProject.cpp@{SolveSquareProject.cpp}!SolveSquare@{SolveSquare}}
+\index{SolveSquare@{SolveSquare}!SolveSquareProject.cpp@{SolveSquareProject.cpp}}
+\doxysubsubsection{\texorpdfstring{SolveSquare()}{SolveSquare()}}
+{\footnotesize\ttfamily int Solve\+Square (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double $\ast$}]{x1,  }\item[{double $\ast$}]{x2 }\end{DoxyParamCaption})}
+
+Solves a square equation ax2 + bx + c = 0
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & a-\/coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & b-\/coefficient \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & c-\/coefficient \\
+\hline
+\mbox{\texttt{ out}}  & {\em x1} & Pointer to the 1st root \\
+\hline
+\mbox{\texttt{ out}}  & {\em x2} & Pointer to the 2nd root\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of roots
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+In case of infinite numbers of roots, returns -\/1. 
+\end{DoxyNote}
